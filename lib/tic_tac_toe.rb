@@ -60,23 +60,11 @@ class TicTacToe
   end
 
   def won?
-    winner = []
-    WIN_COMBINATIONS.each { |index|
-      win_index_1 = index[0]
-      win_index_2 = index[1]
-      win_index_3 = index[2]
-      puts position_1 = @board[win_index_1]
-      puts position_2 = @board[win_index_2]
-      puts position_3 = @board[win_index_3]
-
-      if position_1 == "X" && position_2 == "X" && position_3 == "X"
-        winner = index
-        break
-      elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
-        winner = index
-        break
-      end }
-     winner == [] ? false : winner
+    WIN_COMBINATIONS.any? do |combo|
+      if position_taken?(combo[0]) && @board[combo[0]] == @board[combo[1]] && @board[combo[1]] == @board[combo[2]]
+        return combo
+      end
+    end
   end
 
   def full?
