@@ -26,8 +26,8 @@ class TicTacToe
     user_input.to_i - 1
   end
 
-  def move(index, character = "X")
-    valid_move?(index) ? @board[index] = character : false
+  def move(index, character)
+    @board[index] = character
   end
 
   def position_taken?(index)
