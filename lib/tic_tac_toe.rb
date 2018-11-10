@@ -23,8 +23,7 @@ class TicTacToe
   end
 
   def input_to_index(user_input)
-    user_index = user_input.to_i
-    index = user_index - 1
+    user_input.to_i - 1
   end
 
   def move(index, character = "X")
