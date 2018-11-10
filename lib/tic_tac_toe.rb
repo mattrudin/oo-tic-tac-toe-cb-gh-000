@@ -80,8 +80,9 @@ class TicTacToe
   end
 
   def winner
-    index = won? ? won?[0] : false
-    index ? @board[index] : nil
+    if combo = won?
+      @board[combo[0]]
+    end
   end
 
   def play
