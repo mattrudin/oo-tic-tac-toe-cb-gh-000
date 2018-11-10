@@ -4,14 +4,9 @@ class TicTacToe
   end
 
   WIN_COMBINATIONS = [
-    [0,1,2], # Top row
-    [3,4,5], # Middle row
-    [6,7,8], # Lower row
-    [0,3,6], # Left column
-    [1,4,7], # Middle column
-    [2,5,8], # Right column
-    [0,4,8], # Diagonal starts from top left corner
-    [2,4,6]  # Diagonal starts from top right corner
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],
+    [0, 4, 8], [2, 4, 6]
   ]
 
   def display_board
@@ -26,8 +21,8 @@ class TicTacToe
     user_input.to_i - 1
   end
 
-  def move(index, character)
-    @board[index] = character
+  def move(index, token)
+    @board[index] = token
   end
 
   def position_taken?(index)
@@ -39,11 +34,11 @@ class TicTacToe
   end
 
   def turn_count
-    @board.select {|index| index == "X" || index == "O"}.length
+    @board.count{|square| square != " " }
   end
 
   def current_player
-    turn_count % 2 == 0 ? "X" : "O"
+    turn_count.even? ? "X" : "O"
   end
 
   def turn
@@ -68,11 +63,11 @@ class TicTacToe
   end
 
   def full?
-    @board.all? {|square| square != " " }
+    @board.all?{|square| square != " " }
   end
 
   def draw?
-    !won? && full?
+    full? && !won?
   end
 
   def over?
